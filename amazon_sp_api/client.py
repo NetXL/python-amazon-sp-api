@@ -814,3 +814,27 @@ class PatchListingRequest(_SpApiRequest):
             params=query_string
         )
         return outcome
+
+
+class GetOperationStatusRequest(_SpApiRequest):
+    def __init__(self, client, operation_id):
+        super().__init__(
+            client=client,
+            method='GET',
+            endpoint=f'/inbound/fba/2024-03-20/operations/{operation_id}',
+            response_type=OperationStatusResponse
+        )
+        self.query_string: Dict[str, str] = {}
+
+    def perform(self) -> OperationStatusResponse:
+        return self.client.make_request(self)
+
+    def do_http_request(self, url, headers, query_string):
+        import requests
+        outcome = requests.get(
+            url=url,
+            data=self.payload_as_string(),
+            headers=headers,
+            params=query_string
+        )
+        return outcome

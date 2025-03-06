@@ -128,18 +128,16 @@ class ConfirmShipmentResponse(SpApiResponse):
 class CreateInboundShipmentPlanResponse(SpApiResponse):
     def __init__(self, data: Dict[str, any]):
         super().__init__(data)
-        payload = data.get('payload', {})
-        self.plans = [
-            InboundShipmentPlan(plan) for plan in payload.get('InboundShipmentPlans', [])
-        ]
+        self.plan_id = data.get('inboundPlanId')
+        self.operation_id = data.get('operationId')
 
     @property
     def is_valid(self):
-        return self.plans is not None and len(self.plans) > 0
+        return self.plan_id is not None and self.operation_id is not None
 
     @property
     def is_multiple_fulfilment_centers(self):
-        return self.plans is not None and len(self.plans) > 1
+        return False
 
 
 class GetListingItemResponse(SpApiResponse):
@@ -159,3 +157,14 @@ class CreateInboundShipmentResponse(SpApiResponse):
 class PatchListingResponse(SpApiResponse):
     def __init__(self, data: Dict[str, any]):
         super().__init__(data)
+
+
+class OperationStatusResponse(SpApiResponse):
+    def __init__(self, data: Dict[str, any]):
+        super().__init__(data)
+        self.status = data.get('operationStatus')
+        self.operation_id = data.get('operationId')
+        self.operation = data.get('operation')
+        self.problems = []
+        for problem in data.get('operationProblems'):
+            self.problems.append(problem)
