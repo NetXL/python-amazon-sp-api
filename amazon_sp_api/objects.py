@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 
 class Order(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.order_id: str = data.get('AmazonOrderId', None)
         self.status: str = data.get('OrderStatus', None)
         self.purchase_date: str = data.get('PurchaseDate', None)
@@ -15,12 +15,12 @@ class Order(object):
         self.last_update_date: str = data.get('LastUpdateDate', None)
         self.order_total: Money = Money(data.get('OrderTotal', {}))
         self.shipment_service_level_category: str = data.get('ShipmentServiceLevelCategory', None)
-        self.payment_method_details: List[str] = data.get('PaymentMethodDetails', [])
+        self.payment_method_details: list[str] = data.get('PaymentMethodDetails', [])
         self.sales_channel: str = data.get('SalesChannel', None)
         self.must_ship_by: str = data.get('LatestShipDate', None)
         self.must_deliver_by: str = data.get('LatestDeliveryDate', None)
 
-        self.items: List[OrderItem] = []
+        self.items: list[OrderItem] = []
         self.buyer_info: Optional[BuyerInfo] = BuyerInfo(data.get('BuyerInfo', {}))
         self.delivery_address: Optional[Address] = Address(data.get('ShippingAddress', {}))
         self.automated_shipping_settings: Optional[AutomatedShippingSettings] = (
@@ -32,7 +32,7 @@ class Order(object):
 
 
 class Address(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.name: str = data.get('Name', None)
         self.address_one: str = data.get('AddressLine1', None)
         self.address_two: str = data.get('AddressLine2', None)
@@ -49,13 +49,13 @@ class Address(object):
 
 
 class Money(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.currency: str = data.get('CurrencyCode', None)
         self.amount: str = data.get('Amount', None)
 
 
 class OrderItem(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.asin: str = data.get('ASIN', None)
         self.our_sku: str = data.get('SellerSKU', None)
         self.order_item_id: str = data.get('OrderItemId', None)
@@ -84,7 +84,7 @@ class OrderItem(object):
 
 
 class BuyerInfo(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.email_address = data.get('BuyerEmail', None)
         self.name = data.get('BuyerName', None)
         self.country = data.get('BuyerCountry', None)
@@ -93,14 +93,14 @@ class BuyerInfo(object):
 
 
 class SupplySource(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.code = data.get('supplySourceCode', None)
         self.alias = data.get('alias', None)
         self.address = SupplySourceAddress(data=data.get('address', {}))
 
 
 class SupplySourceAddress(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.name = data.get('name', None)
         self.addressLineOne = data.get('addressLine1', None)
         self.addressLineTwo = data.get('addressLine2', None)
@@ -115,24 +115,24 @@ class SupplySourceAddress(object):
 
 
 class AutomatedShippingSettings(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.carrier: Optional[str] = data.get('AutomatedCarrier', None)
         self.has_automation: bool = data.get('HasAutomatedShippingSettings', False)
         self.method: Optional[str] = data.get('AutomatedShipMethod', None)
 
 
 class InboundShipmentItem(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.fulfillment_sku: Optional[str] = data.get('FulfillmentNetworkSKU', None)
         self.quantity: Optional[int] = data.get('Quantity', None)
         self.sku: Optional[str] = data.get('SellerSKU', None)
 
 
 class InboundShipmentPlan(object):
-    def __init__(self, data: Dict[str, any]):
+    def __init__(self, data: dict[str, any]):
         self.destination: Optional[str] = data.get('DestinationFulfillmentCenterId', None)
         self.label_type: Optional[str] = data.get('LabelPrepType', None)
         self.shipment_id: Optional[str] = data.get('ShipmentId', None)
-        self.items: List[InboundShipmentItem] = [
+        self.items: list[InboundShipmentItem] = [
             InboundShipmentItem(item) for item in data.get('Items', [])
         ]

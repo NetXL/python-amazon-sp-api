@@ -15,8 +15,8 @@ class _SpApiRequest(object):
         self.client = client
         self.method: str = method
         self.endpoint: str = endpoint
-        self.query_string: Dict[str, str] = {}
-        self.payload: Dict[str, Union[List[str], str]] = {}
+        self.query_string: dict[str, str] = {}
+        self.payload: dict[str, Union[list[str], str]] = {}
         self._response_type: Type[SpApiResponse] = response_type
 
     def get_query_string(self) -> str:
@@ -74,7 +74,7 @@ class Client(object):
 
         self._base_url: str = 'https://sellingpartnerapi-eu.amazon.com'
 
-        self._headers: Dict[str, str] = {}
+        self._headers: dict[str, str] = {}
 
         # These values are set by the client when required
         self._access_token: Optional[str] = None
@@ -181,7 +181,7 @@ class GetOrderRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}',
             response_type=GetOrderResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetOrderResponse:
         return self.client.make_request(self)
@@ -204,7 +204,7 @@ class GetOrderBuyerInfoRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}/buyerInfo',
             response_type=GetOrderBuyerInfoResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetOrderBuyerInfoResponse:
         return self.client.make_request(self)
@@ -227,7 +227,7 @@ class GetOrderItemsRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}/orderItems',
             response_type=GetOrderItemsResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetOrderItemsResponse:
         return self.client.make_request(self)
@@ -250,7 +250,7 @@ class GetOrderAddressRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}/address',
             response_type=GetOrderAddressResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetOrderAddressResponse:
         return self.client.make_request(self)
@@ -273,7 +273,7 @@ class ListSupplySourcesRequest(_SpApiRequest):
             endpoint='/supplySources/2020-07-01/supplySources',
             response_type=ListSupplySourcesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> ListSupplySourcesResponse:
         return self.client.make_request(self)
@@ -296,7 +296,7 @@ class GetSupplySourceRequest(_SpApiRequest):
             endpoint=f'/supplySources/2020-07-01/supplySources/{supply_source_id}',
             response_type=ListSupplySourcesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> ListSupplySourcesResponse:
         return self.client.make_request(self)
@@ -319,7 +319,7 @@ class CreateSupplySourcesRequest(_SpApiRequest):
             endpoint='/supplySources/2020-07-01/supplySources',
             response_type=CreateSupplySourcesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateSupplySourcesResponse:
         return self.client.make_request(self)
@@ -343,7 +343,7 @@ class UpdateSupplySourceRequest(_SpApiRequest):
             endpoint=f'/supplySources/2020-07-01/supplySources/{supply_source_id}',
             response_type=CreateSupplySourcesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateSupplySourcesResponse:
         return self.client.make_request(self)
@@ -367,7 +367,7 @@ class UpdateSupplySourceStatusRequest(_SpApiRequest):
             endpoint=f'/supplySources/2020-07-01/supplySources/{supply_source_id}/status',
             response_type=CreateSupplySourcesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateSupplySourcesResponse:
         return self.client.make_request(self)
@@ -391,7 +391,7 @@ class GetSubscriptionsRequest(_SpApiRequest):
             endpoint=f'/notifications/v1/subscriptions/{subscription_type}',
             response_type=GetSubscriptionsResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetSubscriptionsResponse:
         return self.client.make_request(self)
@@ -414,7 +414,7 @@ class GetDestinationsRequest(_SpApiRequest):
             endpoint='/notifications/v1/destinations',
             response_type=GetDestinationsResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetDestinationsResponse:
         return self.client.make_request(self)
@@ -437,7 +437,7 @@ class CreateDestinationRequest(_SpApiRequest):
             endpoint='/notifications/v1/destinations',
             response_type=CreateDestinationResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateDestinationResponse:
         return self.client.make_request(self)
@@ -461,7 +461,7 @@ class CreateSubscriptionRequest(_SpApiRequest):
             endpoint=f'/notifications/v1/subscriptions/{subscription_type}',
             response_type=CreateDestinationResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateDestinationResponse:
         return self.client.make_request(self)
@@ -485,7 +485,7 @@ class UpdateListingClickAndCollectInventory(_SpApiRequest):
             endpoint=f'/listings/2021-08-01/items/{seller_id}/{sku}',
             response_type=CreateDestinationResponse
         )
-        self.query_string: Dict[str, str] = {
+        self.query_string: dict[str, str] = {
             'marketplaceIds': 'A1F83G8C2ARO7P'
         }
 
@@ -511,7 +511,7 @@ class UpdateOrderStatusRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}/shipment',
             response_type=UpdateOrderStatusResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateDestinationResponse:
         return self.client.make_request(self)
@@ -535,7 +535,7 @@ class GetRestrictedDataToken(_SpApiRequest):
             endpoint='/tokens/2021-03-01/restrictedDataToken',
             response_type=RestrictedDataTokenResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> RestrictedDataTokenResponse:
         return self.client.make_request(self)
@@ -559,7 +559,7 @@ class GetEligibleShipmentServices(_SpApiRequest):
             endpoint='/mfn/v0/eligibleShippingServices',
             response_type=GetEligibleShipmentServicesResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetEligibleShipmentServicesResponse:
         return self.client.make_request(self)
@@ -583,7 +583,7 @@ class CreateShipmentRequest(_SpApiRequest):
             endpoint='/mfn/v0/shipments',
             response_type=CreateShipmentResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateShipmentResponse:
         return self.client.make_request(self)
@@ -607,7 +607,7 @@ class RequestReportRequest(_SpApiRequest):
             endpoint='/reports/2021-06-30/reports',
             response_type=RequestReportResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> RequestReportResponse:
         return self.client.make_request(self)
@@ -631,7 +631,7 @@ class GetReportRequest(_SpApiRequest):
             endpoint=f'/reports/2021-06-30/reports/{report_id}',
             response_type=GetReportResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetReportResponse:
         return self.client.make_request(self)
@@ -654,7 +654,7 @@ class GetReportDocumentRequest(_SpApiRequest):
             endpoint=f'/reports/2021-06-30/documents/{document_id}',
             response_type=ReportDocumentResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> ReportDocumentResponse:
         return self.client.make_request(self)
@@ -677,7 +677,7 @@ class GetReportsRequest(_SpApiRequest):
             endpoint='/reports/2021-06-30/reports',
             response_type=GetReportsResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> GetReportsResponse:
         return self.client.make_request(self)
@@ -702,7 +702,7 @@ class ConfirmShipmentRequest(_SpApiRequest):
             endpoint=f'/orders/v0/orders/{order_id}/shipmentConfirmation',
             response_type=ConfirmShipmentResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> ConfirmShipmentResponse:
         return self.client.make_request(self)
@@ -726,7 +726,7 @@ class CreateInboundShipmentPlanRequest(_SpApiRequest):
             endpoint='/inbound/fba/2024-03-20/inboundPlans',
             response_type=CreateInboundShipmentPlanResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateInboundShipmentPlanResponse:
         return self.client.make_request(self)
@@ -750,7 +750,7 @@ class GetListingItemRequest(_SpApiRequest):
             endpoint=f'/listings/2021-08-01/items/{seller_id}/{sku}',
             response_type=GetListingItemResponse
         )
-        self.query_string: Dict[str, str] = {
+        self.query_string: dict[str, str] = {
             'marketplaceIds': 'A1F83G8C2ARO7P'
         }
 
@@ -776,7 +776,7 @@ class CreateInboundShipmentRequest(_SpApiRequest):
             endpoint=f'/fba/inbound/v0/shipments/{shipment_id}',
             response_type=CreateInboundShipmentResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> CreateInboundShipmentResponse:
         return self.client.make_request(self)
@@ -800,7 +800,7 @@ class PatchListingRequest(_SpApiRequest):
             endpoint=f'/listings/2021-08-01/items/{seller_id}/{product_sku}',
             response_type=PatchListingResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> PatchListingResponse:
         return self.client.make_request(self)
@@ -824,7 +824,7 @@ class GetOperationStatusRequest(_SpApiRequest):
             endpoint=f'/inbound/fba/2024-03-20/operations/{operation_id}',
             response_type=OperationStatusResponse
         )
-        self.query_string: Dict[str, str] = {}
+        self.query_string: dict[str, str] = {}
 
     def perform(self) -> OperationStatusResponse:
         return self.client.make_request(self)
